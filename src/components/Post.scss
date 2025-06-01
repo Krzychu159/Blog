@@ -1,0 +1,42 @@
+.post-item {
+  max-width: 500px;
+  margin: 3em auto;
+  overflow: hidden;
+  background-color: rgb(159, 159, 159);
+  padding: 10px;
+  border-radius: 15px;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+    .left {
+      display: flex;
+      align-items: center;
+      img {
+        max-width: 2em;
+      }
+    }
+  }
+  main {
+    margin-bottom: 1em;
+    img {
+      max-width: 100%;
+    }
+  }
+  footer {
+    .likes {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: space-between;
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,37 +1,29 @@
-import { useEffect, useState } from "react";
-import { supabase } from "./supabaseClient";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { UserProvider } from "./contexts/UserContext";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import Feed from "./pages/Feed";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-function App() {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const { data, error } = await supabase
-        .from("posts")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) console.error("Fetch error:", error);
-      else setPosts(data);
-    };
-
-    fetchPosts();
-  }, []);
-
+export default function App() {
   return (
-    <div>
-      <h1>Supabase Blog</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
-            <small>{post.likes} likes</small>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <BrowserRouter>
+      <UserProvider>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          <Route
+            path="/feed"
+            element={
+              <ProtectedRoute>
+                <Feed />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </UserProvider>
+    </BrowserRouter>
   );
 }
-
-export default App;
