@@ -1,4 +1,4 @@
-import "./post.scss";
+import "./Post.scss";
 import user from "../assets/user_logo.svg";
 import { AiFillLike } from "react-icons/ai";
 import { FaComment } from "react-icons/fa";
