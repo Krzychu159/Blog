@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Feed from "./pages/Feed";
 import ProtectedRoute from "./components/ProtectedRoute";
+import "./index.css";
 
 export default function App() {
   return (

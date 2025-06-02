@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 import Post from "../components/Post";
+import "./Feed.scss";
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
