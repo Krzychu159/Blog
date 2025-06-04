@@ -11,7 +11,14 @@ export default function PostForm() {
         <input type="text" placeholder="What's on your mind, XXX" />
       </div>
       <div className="post-type">
-        <div className="ob">
+        <div
+          className="ob"
+          onClick={() =>
+            alert(
+              "This option is not available and is unlikely to be offered in the future."
+            )
+          }
+        >
           <RiLiveFill size={27} color="#DD2334" />
           Live video
         </div>

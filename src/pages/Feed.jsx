@@ -3,6 +3,7 @@ import { supabase } from "../supabaseClient";
 import Post from "../components/Post";
 import PostForm from "../components/PostForm";
 import Story from "../components/Story";
+import Menu from "../components/Menu";
 import "./Feed.scss";
 
 export default function Feed() {
@@ -29,12 +30,9 @@ export default function Feed() {
 
   return (
     <div>
-      <div>
-        <PostForm />
-      </div>
-      <div>
-        <Story />
-      </div>
+      <Menu />
+      <PostForm />
+      <Story />
       <div className="post-list">
         {loading ? "loading" : null}
         {posts.map((post) => (
