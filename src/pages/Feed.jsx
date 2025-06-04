@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 import Post from "../components/Post";
+import PostForm from "../components/PostForm";
+import Story from "../components/Story";
 import "./Feed.scss";
 
 export default function Feed() {
@@ -27,11 +29,18 @@ export default function Feed() {
 
   return (
     <div>
-      <h1>Posts</h1>
-      {loading ? "loading" : null}
-      {posts.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
+      <div>
+        <PostForm />
+      </div>
+      <div>
+        <Story />
+      </div>
+      <div className="post-list">
+        {loading ? "loading" : null}
+        {posts.map((post) => (
+          <Post key={post.id} post={post} />
+        ))}
+      </div>
     </div>
   );
 }

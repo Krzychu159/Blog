@@ -1,0 +1,25 @@
+.story {
+  background-color: #252728;
+  display: flex;
+  margin-top: 1em;
+  padding: 1em 1em;
+  .plus {
+    width: 45px;
+    height: 45px;
+    background-color: #243a52;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    line-height: 1;
+    color: #3578e5;
+    margin-right: 10px;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
