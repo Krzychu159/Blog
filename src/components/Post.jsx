@@ -3,6 +3,9 @@ import user from "../assets/user_logo.svg";
 import { AiFillLike } from "react-icons/ai";
 import { FaComment } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
+import { BsThreeDots } from "react-icons/bs";
+import { RxCross2 } from "react-icons/rx";
+import { FaGlobeAmericas } from "react-icons/fa";
 
 export default function Post({ post }) {
   return (
@@ -20,11 +23,17 @@ export default function Post({ post }) {
                 hour: "2-digit",
                 minute: "2-digit",
               })}
+              <FaGlobeAmericas size={11} />
             </div>
           </div>
         </div>
         <div className="right">
-          <div className="x">X</div>
+          <div>
+            <BsThreeDots color="#b0b3b8;" size={20} />
+          </div>
+          <div>
+            <RxCross2 color="#b0b3b8;" size={20} />
+          </div>
         </div>
       </header>
       <main>

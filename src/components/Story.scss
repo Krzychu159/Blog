@@ -3,6 +3,9 @@
   display: flex;
   margin-top: 1em;
   padding: 1em 1em;
+  @media (min-width: 768px) {
+    border-radius: 12px;
+  }
   .plus {
     width: 45px;
     height: 45px;

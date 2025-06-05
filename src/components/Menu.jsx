@@ -4,6 +4,11 @@ import { FaSearch } from "react-icons/fa";
 import { RiGridFill } from "react-icons/ri";
 import { FaFacebookMessenger } from "react-icons/fa";
 import { PiBellRingingFill } from "react-icons/pi";
+import { GoHomeFill } from "react-icons/go";
+import { FaUserFriends } from "react-icons/fa";
+import { MdOutlineOndemandVideo } from "react-icons/md";
+import { BsShop } from "react-icons/bs";
+import { IoPeopleCircleOutline } from "react-icons/io5";
 
 export default function Menu() {
   return (
@@ -14,6 +19,23 @@ export default function Menu() {
         </div>
         <div className="circle">
           <FaSearch />
+        </div>
+      </div>
+      <div className="middle">
+        <div className="circle">
+          <GoHomeFill />
+        </div>
+        <div className="circle">
+          <FaUserFriends />
+        </div>
+        <div className="circle">
+          <MdOutlineOndemandVideo />
+        </div>
+        <div className="circle">
+          <BsShop />
+        </div>
+        <div className="circle">
+          <IoPeopleCircleOutline />
         </div>
       </div>
       <div className="right">

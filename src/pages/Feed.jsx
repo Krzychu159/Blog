@@ -31,13 +31,19 @@ export default function Feed() {
   return (
     <div>
       <Menu />
-      <PostForm />
-      <Story />
-      <div className="post-list">
-        {loading ? "loading" : null}
-        {posts.map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
+      <div className="container">
+        <div className="side-bar">asdsad</div>
+        <div className="feed">
+          <PostForm />
+          <Story />
+          <div className="post-list">
+            {loading ? "loading" : null}
+            {posts.map((post) => (
+              <Post key={post.id} post={post} />
+            ))}
+          </div>
+        </div>
+        <div className="group-chat">gsdfsdf</div>
       </div>
     </div>
   );

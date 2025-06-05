@@ -3,6 +3,9 @@
   display: flex;
   flex-direction: column;
   padding: 0 15px;
+  @media (min-width: 768px) {
+    border-radius: 12px;
+  }
   .sentence {
     display: flex;
     gap: 10px;

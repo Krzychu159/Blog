@@ -1,9 +1,11 @@
 .post-item {
-  max-width: 500px;
   margin: 1em auto;
   overflow: hidden;
   background-color: #252728;
   color: #e2e5e9;
+  @media (min-width: 768px) {
+    border-radius: 12px;
+  }
 
   header {
     display: flex;
@@ -27,13 +29,18 @@
         }
         .date {
           font-size: 0.8em;
+          color: #b0b3b8;
+          display: flex;
+          align-items: center;
+          gap: 5px;
         }
       }
     }
     .right {
-      .x {
-        font-size: 1.2em;
-      }
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-right: 0.5rem;
     }
   }
   main {
