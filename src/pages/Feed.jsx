@@ -32,7 +32,7 @@ export default function Feed() {
     <div>
       <Menu />
       <div className="container">
-        <div className="side-bar">asdsad</div>
+        <div className="side-bar"></div>
         <div className="feed">
           <PostForm />
           <Story />
@@ -43,7 +43,7 @@ export default function Feed() {
             ))}
           </div>
         </div>
-        <div className="group-chat">gsdfsdf</div>
+        <div className="group-chat"></div>
       </div>
     </div>
   );
