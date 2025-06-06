@@ -11,6 +11,9 @@
     gap: 10px;
     padding: 1em 0;
     align-items: stretch;
+    > * {
+      cursor: pointer;
+    }
     img {
       height: 2.5em;
       width: 2.5em;
@@ -36,10 +39,18 @@
     justify-content: space-around;
     padding: 1em 0;
     border-top: solid 0.001em #b0b3b8;
+    > * {
+      cursor: pointer;
+    }
     .ob {
       display: flex;
       align-items: center;
       gap: 0.5em;
+    }
+    .ob:last-child {
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
   }
 }

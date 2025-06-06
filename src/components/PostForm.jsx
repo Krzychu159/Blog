@@ -2,6 +2,7 @@ import user from "../assets/user_logo.svg";
 import "./PostForm.scss";
 import { RiLiveFill } from "react-icons/ri";
 import { IoMdPhotos } from "react-icons/io";
+import { MdEmojiEmotions } from "react-icons/md";
 
 export default function PostForm() {
   return (
@@ -19,12 +20,16 @@ export default function PostForm() {
             )
           }
         >
-          <RiLiveFill size={27} color="#DD2334" />
+          <RiLiveFill size={23} color="#DD2334" />
           Live video
         </div>
         <div className="ob">
-          <IoMdPhotos size={27} color="#00A400" />
+          <IoMdPhotos size={23} color="#00A400" />
           Photo/video
+        </div>
+        <div className="ob">
+          <MdEmojiEmotions size={23} color="#F9CF00" />
+          Feeling/activity
         </div>
       </div>
     </div>
