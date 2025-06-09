@@ -1,12 +1,13 @@
 .menu {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+
   background-color: #252728;
   margin-bottom: 1em;
   padding: 0 1em;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .left,
   .middle,
   .right {
@@ -38,8 +39,8 @@
     flex-shrink: 0;
   }
   .circle {
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 2rem;
+    height: 2rem;
     background-color: #333334;
     border-radius: 50%;
     display: flex;
@@ -49,6 +50,47 @@
     svg {
       font-size: 1.2rem;
       color: white;
+    }
+  }
+  .search {
+    height: 2rem;
+    min-width: 200px;
+    background-color: #333334;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+    div,
+    input {
+      background-color: #333334;
+    }
+
+    div {
+      padding: 0 10px;
+    }
+    input {
+      border: none;
+      color: white;
+      &:focus {
+        outline: none;
+        border: none;
+      }
+    }
+  }
+  .desktop-only {
+    display: flex;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .mobile-only {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: flex;
     }
   }
 }

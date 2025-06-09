@@ -15,11 +15,22 @@ export default function Menu() {
     <div className="menu">
       <div className="left">
         <div className="circle">
-          <img src={user} alt="user" />
+          <a href="/feed">
+            <img src={user} alt="user" />
+          </a>
         </div>
-        <div className="circle">
-          <FaSearch />
-        </div>
+        <>
+          <div className="search desktop-only">
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <FaSearch />
+            </div>
+            <input type="text" />
+          </div>
+
+          <div className="circle mobile-only">
+            <FaSearch />
+          </div>
+        </>
       </div>
       <div className="middle">
         <div className="circle">
