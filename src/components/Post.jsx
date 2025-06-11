@@ -1,5 +1,5 @@
 import "./Post.scss";
-import user from "../assets/user_logo.svg";
+import userIcon from "../assets/user_logo.svg";
 import { AiFillLike } from "react-icons/ai";
 import { FaComment } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
@@ -9,7 +9,7 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
 
-export default function Post({ post }) {
+export default function Post({ post, user }) {
   const [likes, setLikes] = useState(post.likes);
   const [liked, setLiked] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -67,9 +67,12 @@ export default function Post({ post }) {
         <div className="post-item">
           <header>
             <div className="left">
-              <img src={user} alt="user img" />
+              <img src={userIcon} alt="user img" />
               <div className="user-data">
-                <div className="username">{post.user_email.split("@")[0]}</div>
+                <div className="username">
+                  {user ? user.full_name : "Unkown user..."}
+                </div>
+
                 <div className="date">
                   {new Date(post.created_at).toLocaleString("pl-PL", {
                     day: "2-digit",

@@ -24,7 +24,7 @@ export default function Menu() {
             <div style={{ display: "flex", alignItems: "center" }}>
               <FaSearch />
             </div>
-            <input type="text" />
+            <input type="text" placeholder="Search Facebook" />
           </div>
 
           <div className="circle mobile-only">
