@@ -53,14 +53,20 @@ export default function Menu() {
         <div className="circle">
           <RiGridFill />
         </div>
-        <div className="circle">
+        <div className="circle not">
           <FaFacebookMessenger />
         </div>
-        <div className="circle">
+        <div className="circle not">
           <PiBellRingingFill />
         </div>
-        <div className="circle">
+        <div className="circle arrow">
           <img src={user} alt="user" />
+          <ul className="dropdown">
+            <li>Mój profil</li>
+            <li>Ustawienia i prywatność</li>
+            <li>Preferencje wyświetlania</li>
+            <li>Wyloguj</li>
+          </ul>
         </div>
       </div>
     </div>

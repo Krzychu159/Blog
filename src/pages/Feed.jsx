@@ -15,7 +15,9 @@ export default function Feed() {
     async function fetchPosts() {
       const { data, error } = await supabase.from("posts").select("*");
       if (error) console.log("Posts error:", error.message);
-      else setPosts(data);
+      else {
+        setPosts(data);
+      }
       setLoading(false);
     }
     fetchPosts();
