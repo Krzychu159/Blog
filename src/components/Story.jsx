@@ -1,15 +1,11 @@
 import "./Story.scss";
-
+import { toast } from "react-toastify";
 export default function Story() {
   return (
     <div className="story">
       <div
         className="plus"
-        onClick={() =>
-          alert(
-            "This option is not available and is unlikely to be offered in the future."
-          )
-        }
+        onClick={() => toast.error("This option is not available...")}
       >
         +
       </div>

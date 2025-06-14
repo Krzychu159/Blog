@@ -33,19 +33,19 @@ export default function Menu() {
         </>
       </div>
       <div className="middle">
-        <div className="circle">
+        <div className="">
           <GoHomeFill />
         </div>
-        <div className="circle">
+        <div className="">
           <FaUserFriends />
         </div>
-        <div className="circle">
+        <div className="">
           <MdOutlineOndemandVideo />
         </div>
-        <div className="circle">
+        <div className="">
           <BsShop />
         </div>
-        <div className="circle">
+        <div className="">
           <IoPeopleCircleOutline />
         </div>
       </div>
@@ -61,12 +61,7 @@ export default function Menu() {
         </div>
         <div className="circle arrow">
           <img src={user} alt="user" />
-          <ul className="dropdown">
-            <li>Mój profil</li>
-            <li>Ustawienia i prywatność</li>
-            <li>Preferencje wyświetlania</li>
-            <li>Wyloguj</li>
-          </ul>
+          <ul className="dropdown"></ul>
         </div>
       </div>
     </div>

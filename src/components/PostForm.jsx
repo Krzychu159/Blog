@@ -3,7 +3,7 @@ import "./PostForm.scss";
 import { RiLiveFill } from "react-icons/ri";
 import { IoMdPhotos } from "react-icons/io";
 import { MdEmojiEmotions } from "react-icons/md";
-
+import { toast } from "react-toastify";
 export default function PostForm() {
   return (
     <div className="post-form">
@@ -14,11 +14,7 @@ export default function PostForm() {
       <div className="post-type">
         <div
           className="ob"
-          onClick={() =>
-            alert(
-              "This option is not available and is unlikely to be offered in the future."
-            )
-          }
+          onClick={() => toast.error("This option is not available...")}
         >
           <RiLiveFill size={23} color="#DD2334" />
           Live video
