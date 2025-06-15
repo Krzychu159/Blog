@@ -4,12 +4,14 @@ import Post from "../components/Post";
 import PostForm from "../components/PostForm";
 import Story from "../components/Story";
 import Menu from "../components/Menu";
+import CommentModal from "../components/CommentModal";
 import "./Feed.scss";
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
+  const [selectedPostId, setSelectedPostId] = useState(null);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -32,11 +34,17 @@ export default function Feed() {
     fetchUsers();
   }, []);
 
+  const openComments = (postId) => {
+    setSelectedPostId(postId);
+  };
+  const closeComments = () => {
+    setSelectedPostId(null);
+  };
+
   return (
     <div>
       <Menu />
       <div className="container">
-        <div className="side-bar"></div>
         <div className="feed">
           <PostForm />
           <Story />
@@ -47,11 +55,14 @@ export default function Feed() {
                 key={post.id}
                 post={post}
                 user={users.find((u) => u.id === post.user_id)}
+                onOpenComments={openComments}
               />
             ))}
+            {selectedPostId && (
+              <CommentModal postId={selectedPostId} onClose={closeComments} />
+            )}
           </div>
         </div>
-        <div className="group-chat"></div>
       </div>
     </div>
   );

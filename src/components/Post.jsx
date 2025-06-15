@@ -9,7 +9,7 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
 
-export default function Post({ post, user }) {
+export default function Post({ post, user, onOpenComments }) {
   const [likes, setLikes] = useState(post.likes);
   const [liked, setLiked] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -123,10 +123,11 @@ export default function Post({ post, user }) {
                 <AiFillLike size={20} color={liked ? "#0866FF" : "#b0b3b8"} />
                 Like
               </button>
-              <button>
+              <button onClick={() => onOpenComments(post.id)}>
                 <FaComment size={20} color="#b0b3b8" />
                 Comment
               </button>
+
               <button onClick={() => handleCopyLink()}>
                 <FaShare size={20} color="#b0b3b8" />
                 Share

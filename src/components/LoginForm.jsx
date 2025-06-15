@@ -3,7 +3,7 @@ import { login } from "../api/auth";
 import { useUser } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import { toast } from "react-toastify";
 import "./LoginForm.scss";
 
 export default function LoginForm() {
@@ -53,9 +53,16 @@ export default function LoginForm() {
           <button type="submit" style={{ color: "white" }}>
             Login
           </button>
-          {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
+          {errorMsg && (
+            <p
+              onLoad={() => toast.error("Better not forget")}
+              style={{ color: "red" }}
+            >
+              {errorMsg}
+            </p>
+          )}
         </form>
-        <p onClick={() => alert("Better not forget :)")}>Forgot password?</p>
+        <p onClick={() => toast.error("Better not forget")}>Forgot password?</p>
         <Link to="/register">
           <button className="create">Create new account</button>
         </Link>
