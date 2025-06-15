@@ -56,10 +56,19 @@ export default function Feed() {
                 post={post}
                 user={users.find((u) => u.id === post.user_id)}
                 onOpenComments={openComments}
+                onClose={closeComments}
               />
             ))}
             {selectedPostId && (
-              <CommentModal postId={selectedPostId} onClose={closeComments} />
+              <CommentModal
+                postId={selectedPostId}
+                post={posts.find((p) => p.id === selectedPostId)}
+                onClose={closeComments}
+                user={users.find(
+                  (u) =>
+                    u.id === posts.find((p) => p.id === selectedPostId).user_id
+                )}
+              />
             )}
           </div>
         </div>

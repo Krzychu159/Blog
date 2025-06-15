@@ -1,4 +1,7 @@
 .menu {
+  position: sticky;
+  z-index: 100;
+  top: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   overflow: hidden;

@@ -1,0 +1,40 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comment-modal {
+  background-color: #252728;
+  padding: 0.2rem 0;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  .post-item {
+    margin: 0;
+  }
+  .comments {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5em;
+
+    .comment {
+      display: flex;
+      img {
+        width: 1.5rem;
+        margin-right: 0.5em;
+      }
+    }
+  }
+}

@@ -9,7 +9,7 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
 
-export default function Post({ post, user, onOpenComments }) {
+export default function Post({ post, user, onOpenComments, onClose }) {
   const [likes, setLikes] = useState(post.likes);
   const [liked, setLiked] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -87,10 +87,15 @@ export default function Post({ post, user, onOpenComments }) {
             </div>
             <div className="right">
               <div>
-                <BsThreeDots color="#b0b3b8;" size={20} />
+                <BsThreeDots color="#b0b3b8" size={20} />
               </div>
-              <div onClick={() => setDeleted(true)}>
-                <RxCross2 color="#b0b3b8;" size={20} />
+              <div
+                onClick={() => {
+                  onClose();
+                  setDeleted(true);
+                }}
+              >
+                <RxCross2 color="#b0b3b8" size={20} />
               </div>
             </div>
           </header>
