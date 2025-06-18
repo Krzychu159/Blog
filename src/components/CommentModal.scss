@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 9999;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +34,54 @@
       img {
         width: 1.5rem;
         margin-right: 0.5em;
+      }
+      .content {
+        background-color: #333334;
+        padding: 0.5rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        .name {
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
+        .body {
+          font-size: 0.9rem;
+        }
+      }
+      .under-comment {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.7em;
+        padding: 0.2rem 0.5rem;
+        .left {
+          display: flex;
+          gap: 0.7rem;
+          span {
+            cursor: pointer;
+          }
+          .like-btn {
+            cursor: pointer;
+            font-weight: 500;
+
+            margin: 0 6px;
+            user-select: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+        .right {
+          display: flex;
+          align-items: center;
+          img {
+            max-width: 1rem;
+            margin-left: 0.4rem;
+          }
+        }
       }
     }
   }

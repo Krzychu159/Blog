@@ -8,8 +8,15 @@ import { RxCross2 } from "react-icons/rx";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
+import { toast } from "react-toastify";
 
-export default function Post({ post, user, onOpenComments, onClose }) {
+export default function Post({
+  post,
+  user,
+  onOpenComments,
+  onClose,
+  commentCount,
+}) {
   const [likes, setLikes] = useState(post.likes);
   const [liked, setLiked] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -20,7 +27,7 @@ export default function Post({ post, user, onOpenComments, onClose }) {
       const newLikes = likes - 1;
       setLikes(newLikes);
       const { error } = await supabase
-        .from("posts")
+        .from("postsv2")
         .update({ likes: newLikes })
         .eq("id", post.id);
 
@@ -32,7 +39,7 @@ export default function Post({ post, user, onOpenComments, onClose }) {
       const newLikes = likes + 1;
       setLikes(newLikes);
       const { error } = await supabase
-        .from("posts")
+        .from("postsv2")
         .update({ likes: newLikes })
         .eq("id", post.id);
 
@@ -47,7 +54,7 @@ export default function Post({ post, user, onOpenComments, onClose }) {
     const link = `post${post.id}`;
     try {
       await navigator.clipboard.writeText(link);
-      alert("Link został skopiowany do schowka!");
+      toast.success("Post URL is copied...");
     } catch (err) {
       console.error("Błąd kopiowania:", err);
     }
@@ -57,17 +64,20 @@ export default function Post({ post, user, onOpenComments, onClose }) {
     <>
       {deleted ? (
         <div className="post-item-deleted">
-          <p>Post Deleted </p>
+          <p>
+            Post <span style={{ color: "gray" }}> #{post.id}</span> Deleted{" "}
+          </p>
           <div>
-            <button onClick={() => setDeleted(false)}>Back</button>{" "}
-            <button onClick={() => alert("Report Sent!")}>Report</button>
+            <button onClick={() => setDeleted(false)}>Return</button>{" "}
+            <button onClick={() => toast.success("Repot sent!")}>Report</button>
           </div>
         </div>
       ) : (
         <div className="post-item">
           <header>
             <div className="left">
-              <img src={userIcon} alt="user img" />
+              <img src={user?.image || userIcon} alt="User profile" />
+
               <div className="user-data">
                 <div className="username">
                   {user ? user.full_name : "Unkown user..."}
@@ -112,9 +122,11 @@ export default function Post({ post, user, onOpenComments, onClose }) {
                 />{" "}
                 <div style={{ marginLeft: "3px" }}>{likes}</div>
               </div>
-              <div className="like-icon">
-                <div style={{ marginRight: "6px" }}>XX</div>
-
+              <div
+                className="like-icon"
+                onClick={() => onOpenComments(post.id)}
+              >
+                <div style={{ marginRight: "6px" }}>{commentCount}</div>
                 <FaComment size={20} color="#b0b3b8" />
               </div>
             </div>

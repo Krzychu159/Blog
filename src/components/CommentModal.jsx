@@ -2,30 +2,51 @@ import { useEffect, useState } from "react";
 import "./CommentModal.scss";
 import { supabase } from "../supabaseClient";
 import Post from "../components/Post";
-import userIcon from "../assets/user_logo.svg";
+import { formatDistanceToNow } from "date-fns";
+import { toast } from "react-toastify";
 
 export default function CommentModal({ postId, post, onClose, user }) {
   const [comments, setComments] = useState([]);
+  const [likedMap, setLikedMap] = useState({}); // lokalne stany lajkowania
 
   useEffect(() => {
     async function fetchComments() {
       const { data, error } = await supabase
-        .from("comments")
-        .select("id, created_at, name, body")
+        .from("commentsv2")
+        .select(
+          "id, created_at, body, user_id, usersv2(full_name, image), likes"
+        )
         .eq("post_id", postId)
         .order("created_at", { ascending: true });
 
       if (error) console.error("Comments error:", error.message);
-      else {
-        setComments(data);
-        console.log(data);
-      }
+      else setComments(data);
     }
 
     if (postId) {
       fetchComments();
     }
   }, [postId]);
+
+  const handleLike = async (commentId, currentLikes) => {
+    const isLiked = likedMap[commentId];
+
+    const newLikes = isLiked ? currentLikes - 1 : currentLikes + 1;
+
+    const { error } = await supabase
+      .from("commentsv2")
+      .update({ likes: newLikes })
+      .eq("id", commentId);
+
+    if (!error) {
+      setComments((prev) =>
+        prev.map((c) => (c.id === commentId ? { ...c, likes: newLikes } : c))
+      );
+      setLikedMap((prev) => ({ ...prev, [commentId]: !isLiked }));
+    } else {
+      console.error("Like update error:", error.message);
+    }
+  };
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -43,23 +64,46 @@ export default function CommentModal({ postId, post, onClose, user }) {
           {comments.map((comment) => (
             <div className="comment" key={comment.id}>
               <div>
-                {" "}
-                <img src={userIcon} alt="" />
+                <img src={comment.usersv2.image} alt="avatar" />
               </div>
               <div>
-                <p> {comment.name}</p>
-                <p> {comment.body}</p>
-                <div style={{ display: "flex", gap: "5px", fontSize: "0.7em" }}>
-                  <span>date</span>
-                  <span>like</span>
-                  <span>reply</span>
+                <div className="content">
+                  <p className="name">{comment.usersv2.full_name}</p>
+                  <p className="body">{comment.body}</p>
+                </div>
+                <div className="under-comment">
+                  <div className="left">
+                    <span>
+                      {formatDistanceToNow(new Date(comment.created_at), {
+                        addSuffix: true,
+                      })}
+                    </span>
+                    <span
+                      className="like-btn"
+                      onClick={() => handleLike(comment.id, comment.likes)}
+                    >
+                      {likedMap[comment.id] ? "Unlike" : "Like"}
+                    </span>
+                    <span
+                      onClick={() =>
+                        toast.error("This option is not available...")
+                      }
+                    >
+                      Reply
+                    </span>
+                  </div>
+                  <div className="right">
+                    {comment.likes}{" "}
+                    <img
+                      src="https://scontent-waw2-1.xx.fbcdn.net/m1/v/t6/An8xkEVooUCo5SJedJYOC_iN5OmR2RJo8c1g_Cn96AzPhQ25HQCvCZzyKnk8f2-P-HPtb5ZU1xBQXIOFR6XnrQOf5BUfZ0lFsPt0FaUBAp99uRULbyFl9GuStTxoWbM.png?_nc_gid=H_EN0yB6aWOHbw_r16E4tQ&_nc_oc=AdkP9-KMm3TKiHDKLuZoA_t46-6w4PEL_axR-KiBrA-hRRQ89PAl9gwTKLKPrFLXRew&ccb=10-5&oh=00_AfIrV4lWgOIn9YjM9cyeTnNhaxp9gOeVeCAVlT2LMXCOHQ&oe=68653388&_nc_sid=7da55a"
+                      alt=""
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        <button onClick={() => onClose()}></button>
       </div>
     </div>
   );
