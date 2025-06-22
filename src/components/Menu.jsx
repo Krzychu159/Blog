@@ -9,6 +9,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { MdOutlineOndemandVideo } from "react-icons/md";
 import { BsShop } from "react-icons/bs";
 import { IoPeopleCircleOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 export default function Menu() {
   return (
@@ -33,24 +34,29 @@ export default function Menu() {
         </>
       </div>
       <div className="middle">
-        <div className="">
-          <GoHomeFill />
-        </div>
-        <div className="">
+        <a href="/feed">
+          <div>
+            <GoHomeFill />
+          </div>
+        </a>
+        <div onClick={() => toast.error("This option is not available...")}>
           <FaUserFriends />
         </div>
-        <div className="">
+        <div onClick={() => toast.error("This option is not available...")}>
           <MdOutlineOndemandVideo />
         </div>
-        <div className="">
+        <div onClick={() => toast.error("This option is not available...")}>
           <BsShop />
         </div>
-        <div className="">
+        <div onClick={() => toast.error("This option is not available...")}>
           <IoPeopleCircleOutline />
         </div>
       </div>
       <div className="right">
-        <div className="circle">
+        <div
+          className="circle"
+          onClick={() => toast.error("This option is not available...")}
+        >
           <RiGridFill />
         </div>
         <div className="circle not">

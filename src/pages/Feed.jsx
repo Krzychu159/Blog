@@ -6,6 +6,7 @@ import Story from "../components/Story";
 import Menu from "../components/Menu";
 import CommentModal from "../components/CommentModal";
 import "./Feed.scss";
+import PostModal from "../components/PostModal";
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
@@ -13,6 +14,8 @@ export default function Feed() {
   const [users, setUsers] = useState([]);
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [commentCounts, setCommentCounts] = useState({});
+  const [formShow, setFormShow] = useState(false);
+
   const [page, setPage] = useState(1);
   const POST_PER_PAGE = 10;
 
@@ -73,13 +76,16 @@ export default function Feed() {
   const closeComments = () => {
     setSelectedPostId(null);
   };
+  const closePostForm = () => {
+    setFormShow(false);
+  };
 
   return (
     <div>
       <Menu />
       <div className="container">
         <div className="feed">
-          <PostForm />
+          <PostForm onOpenForm={() => setFormShow(true)} />
           <Story />
           <div className="post-list">
             {loading ? "loading" : null}
@@ -112,6 +118,7 @@ export default function Feed() {
                 )}
               />
             )}
+            {formShow && <PostModal onClose={closePostForm} />}
           </div>
         </div>
       </div>
