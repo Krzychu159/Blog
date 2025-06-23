@@ -9,6 +9,7 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
 import { toast } from "react-toastify";
+import { BiBorderBottom } from "react-icons/bi";
 
 export default function Post({
   post,
@@ -20,6 +21,7 @@ export default function Post({
   const [likes, setLikes] = useState(post.likes);
   const [liked, setLiked] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const [dots, setDots] = useState(false);
 
   async function updateLikes() {
     if (liked) {
@@ -96,9 +98,15 @@ export default function Post({
               </div>
             </div>
             <div className="right">
-              <div>
+              <div onClick={() => setDots((prev) => !prev)}>
                 <BsThreeDots color="#b0b3b8" size={20} />
               </div>
+              {dots && (
+                <div className="dots-modal">
+                  <div onClick={() => setDeleted(true)}>Hide post</div>
+                  <div onClick={() => toast.success("Repot sent!")}>Report</div>
+                </div>
+              )}
               <div
                 onClick={() => {
                   onClose();

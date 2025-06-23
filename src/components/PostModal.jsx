@@ -1,8 +1,24 @@
 import "./PostModal.scss";
 import { RxCross2 } from "react-icons/rx";
 import user from "../assets/user_logo.svg";
+import { useEffect, useState } from "react";
+import { supabase } from "../supabaseClient";
 
 export default function PostModal({ onClose }) {
+  const [users, setUsers] = useState([]);
+  const [userId, setUserId] = useState();
+
+  useEffect(() => {
+    async function fetchUsers() {
+      const { data, error } = await supabase.from("usersv2").select("*");
+      if (error) console.log("Users error:", error.message);
+      else {
+        setUsers(data);
+      }
+    }
+    fetchUsers();
+  }, []);
+
   return (
     <div className="overlay" onClick={onClose}>
       <div className="post-modal" onClick={(e) => e.stopPropagation()}>
@@ -17,11 +33,25 @@ export default function PostModal({ onClose }) {
           />
         </div>
         <div className="personal">
-          <img src={user} alt="user" />
+          <img
+            src={users.find((u) => u.id === userId)?.image || user}
+            alt="user"
+          />
           <div>
             <p>Who is posting?</p>
-            <select name="" id="">
-              <option value="test">test</option>
+            <select
+              onChange={(e) => {
+                setUserId(Number(e.target.value));
+              }}
+              name=""
+              id=""
+            >
+              <option value="nyll">Choose user</option>
+              {users.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.full_name}
+                </option>
+              ))}
             </select>
           </div>
         </div>

@@ -118,7 +118,7 @@
   .arrow {
     position: relative;
     &::after {
-      content: "^";
+      content: "-";
       display: flex;
       align-items: center;
       justify-content: center;

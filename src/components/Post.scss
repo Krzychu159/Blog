@@ -48,9 +48,26 @@
       gap: 10px;
       align-items: center;
       margin-right: 0.5rem;
+      position: relative;
 
       > * {
         cursor: pointer;
+      }
+      .dots-modal {
+        position: absolute;
+        width: 100px;
+        background-color: #1c1c1d;
+        padding: 10px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        top: calc(10px + 1em);
+        right: 0.5rem;
+        div {
+          border-bottom: 1px solid white;
+        }
       }
     }
   }
