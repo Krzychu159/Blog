@@ -3,10 +3,13 @@ import { RxCross2 } from "react-icons/rx";
 import user from "../assets/user_logo.svg";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
+import ImageUploader from "./ImageUploader";
 
 export default function PostModal({ onClose }) {
   const [users, setUsers] = useState([]);
-  const [userId, setUserId] = useState();
+  const [userId, setUserId] = useState("");
+  const [text, setText] = useState("");
+  const [postUrl, setPostUrl] = useState("");
 
   useEffect(() => {
     async function fetchUsers() {
@@ -18,6 +21,26 @@ export default function PostModal({ onClose }) {
     }
     fetchUsers();
   }, []);
+
+  const handleImageUpload = (url) => {
+    console.log("Uploaded image URL:", url);
+    setPostUrl(url);
+  };
+
+  async function addPost() {
+    if (userId === "" || text === "" || postUrl === "") {
+      console.log("empty fields");
+    } else {
+      console.log("no empty fields");
+      const { error } = await supabase
+        .from("postsv2")
+        .insert({ img_url: postUrl, body: text, user_id: userId, likes: 0 });
+
+      if (error) {
+        console.error("likes error: ", error.message);
+      }
+    }
+  }
 
   return (
     <div className="overlay" onClick={onClose}>
@@ -56,10 +79,15 @@ export default function PostModal({ onClose }) {
           </div>
         </div>
         <div className="content">
-          <textarea name="" id=""></textarea>
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Write something.."
+          ></textarea>
+          <ImageUploader onUpload={handleImageUpload} />
         </div>
         <div className="button">
-          <button>Post</button>
+          <button onClick={() => addPost()}>Post</button>
         </div>
       </div>
     </div>
