@@ -4,6 +4,7 @@ import user from "../assets/user_logo.svg";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 import ImageUploader from "./ImageUploader";
+import { toast } from "react-toastify";
 
 export default function PostModal({ onClose }) {
   const [users, setUsers] = useState([]);
@@ -30,11 +31,14 @@ export default function PostModal({ onClose }) {
   async function addPost() {
     if (userId === "" || text === "" || postUrl === "") {
       console.log("empty fields");
+      toast.error("Empty fields!");
     } else {
       console.log("no empty fields");
       const { error } = await supabase
         .from("postsv2")
         .insert({ img_url: postUrl, body: text, user_id: userId, likes: 0 });
+      toast.success("Post added corectly!");
+      onClose();
 
       if (error) {
         console.error("likes error: ", error.message);

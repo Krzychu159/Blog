@@ -20,6 +20,9 @@
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
+  @media (max-width: 768px) {
+    width: 98%;
+  }
   .post-item {
     margin: 0;
   }
@@ -50,6 +53,14 @@
         }
         .body {
           font-size: 0.9rem;
+        }
+        .add-comment-form {
+          display: flex;
+        }
+        input {
+          background-color: #333334;
+          border: none;
+          color: inherit;
         }
       }
       .under-comment {

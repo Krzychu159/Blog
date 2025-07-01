@@ -1,4 +1,6 @@
 import { useState } from "react";
+import "./PostModal.scss";
+import { FaRegImage } from "react-icons/fa6";
 
 function ImageUploader({ onUpload }) {
   const [preview, setPreview] = useState(null);
@@ -41,7 +43,21 @@ function ImageUploader({ onUpload }) {
           />
         )}
       </div>
-      {added && <input type="file" accept="image/*" onChange={handleUpload} />}
+      {added && (
+        <div>
+          <label>
+            <input
+              type="file"
+              style={{ display: "none" }}
+              accept="image/*"
+              onChange={handleUpload}
+            />
+            <div className="media">
+              Add to your post <FaRegImage color="green" size={24} />
+            </div>
+          </label>
+        </div>
+      )}
     </div>
   );
 }

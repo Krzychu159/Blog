@@ -4,6 +4,8 @@ import { supabase } from "../supabaseClient";
 import Post from "../components/Post";
 import { formatDistanceToNow } from "date-fns";
 import { toast } from "react-toastify";
+import userIcon from "../assets/user_logo.svg";
+import { IoSendSharp } from "react-icons/io5";
 
 export default function CommentModal({ postId, post, onClose, user }) {
   const [comments, setComments] = useState([]);
@@ -61,6 +63,20 @@ export default function CommentModal({ postId, post, onClose, user }) {
         <Post key={postId} post={post} user={user} onClose={onClose} />
 
         <div className="comments">
+          <div className="comment">
+            <div>
+              <img src={userIcon} alt="" />
+            </div>
+            <div className="content">
+              <div className="add-comment-form">
+                <input className="body" placeholder="Comment as XX" />
+                <div>
+                  <IoSendSharp />
+                </div>
+              </div>
+            </div>
+            <div></div>
+          </div>
           {comments.map((comment) => (
             <div className="comment" key={comment.id}>
               <div>

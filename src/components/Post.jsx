@@ -117,7 +117,7 @@ export default function Post({
               </div>
             </div>
           </header>
-          <main>
+          <main onClick={() => onOpenComments(post.id)}>
             <div className="post-body">{post.body}</div>
             <img src={post.img_url} alt="image post" />
           </main>
