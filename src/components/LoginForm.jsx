@@ -68,6 +68,7 @@ export default function LoginForm() {
         </Link>
       </div>
       <p>Create a Page for a celebrity, brand or business.</p>
+      <p>Example account e-mail: dqh24342@jioso.com / password:password</p>
     </div>
   );
 }
