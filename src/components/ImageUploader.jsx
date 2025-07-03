@@ -2,8 +2,7 @@ import { useState } from "react";
 import "./PostModal.scss";
 import { FaRegImage } from "react-icons/fa6";
 
-function ImageUploader({ onUpload }) {
-  const [preview, setPreview] = useState(null);
+function ImageUploader({ onUpload, preview, setPreview }) {
   const [added, setAdded] = useState(true);
 
   const handleUpload = async (e) => {
@@ -35,13 +34,7 @@ function ImageUploader({ onUpload }) {
   return (
     <div>
       <div>
-        {preview && (
-          <img
-            src={preview}
-            alt="preview"
-            style={{ width: "150px", marginTop: "10px", borderRadius: "8px" }}
-          />
-        )}
+        {preview && <img src={preview} alt="preview" className="preview" />}
       </div>
       {added && (
         <div>

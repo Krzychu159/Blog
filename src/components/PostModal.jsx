@@ -11,6 +11,7 @@ export default function PostModal({ onClose }) {
   const [userId, setUserId] = useState("");
   const [text, setText] = useState("");
   const [postUrl, setPostUrl] = useState("");
+  const [preview, setPreview] = useState("");
 
   useEffect(() => {
     async function fetchUsers() {
@@ -84,11 +85,17 @@ export default function PostModal({ onClose }) {
         </div>
         <div className="content">
           <textarea
+            wrap="soft"
+            className={preview ? "active" : null}
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Write something.."
           ></textarea>
-          <ImageUploader onUpload={handleImageUpload} />
+          <ImageUploader
+            onUpload={handleImageUpload}
+            preview={preview}
+            setPreview={setPreview}
+          />
         </div>
         <div className="button">
           <button onClick={() => addPost()}>Post</button>

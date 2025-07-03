@@ -4,7 +4,8 @@
   top: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  overflow: hidden;
+  overflow: visible;
+
   background-color: #252728;
   margin-bottom: 1em;
   padding: 0 1em;
@@ -64,7 +65,6 @@
   }
   .search {
     height: 2rem;
-    min-width: 200px;
     background-color: #333334;
     border-radius: 15px;
     display: flex;
@@ -103,6 +103,52 @@
       display: flex;
     }
   }
+
+  .search-element {
+    position: relative;
+    @media (max-width: 768px) {
+      width: 200px;
+    }
+    .search-result {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      background-color: #333334;
+      padding: 0.5em;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      max-height: 300px;
+      overflow-y: auto;
+      li {
+        border-bottom: 1px solid gray;
+        padding: 0.5rem;
+      }
+    }
+  }
+
+  .alert-element {
+    position: relative;
+    .alert-open {
+      position: absolute;
+      top: 110%;
+      right: 0;
+      width: 300px;
+      z-index: 999;
+      background-color: #333334;
+      padding: 0.5em;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      max-height: 300px;
+      overflow-y: auto;
+      li {
+        border-bottom: 1px solid gray;
+        padding: 0.5rem;
+      }
+    }
+  }
+
   .not {
     position: relative;
     &::after {

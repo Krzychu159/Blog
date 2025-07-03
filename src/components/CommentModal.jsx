@@ -9,7 +9,7 @@ import { IoSendSharp } from "react-icons/io5";
 
 export default function CommentModal({ postId, post, onClose, user }) {
   const [comments, setComments] = useState([]);
-  const [likedMap, setLikedMap] = useState({}); // lokalne stany lajkowania
+  const [likedMap, setLikedMap] = useState({});
 
   useEffect(() => {
     async function fetchComments() {
@@ -70,7 +70,7 @@ export default function CommentModal({ postId, post, onClose, user }) {
             <div className="content">
               <div className="add-comment-form">
                 <input className="body" placeholder="Comment as XX" />
-                <div>
+                <div style={{ cursor: "pointer" }}>
                   <IoSendSharp />
                 </div>
               </div>
