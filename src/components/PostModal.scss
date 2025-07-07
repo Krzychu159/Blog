@@ -30,11 +30,18 @@
   }
   .personal {
     display: flex;
+    gap: 0.3rem;
     img {
       height: 2.5em;
       width: 2.5em;
       object-fit: contain;
       flex-shrink: 0;
+    }
+    select {
+      border-radius: 1rem;
+      background-color: #252728;
+      color: white;
+      margin-top: 0.4rem;
     }
   }
   .content {

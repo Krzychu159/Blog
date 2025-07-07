@@ -89,16 +89,19 @@ export default function Feed() {
           <Story />
           <div className="post-list">
             {loading ? "loading" : null}
-            {posts.map((post) => (
-              <Post
-                key={post.id}
-                post={post}
-                user={users.find((u) => u.id === post.user_id)}
-                commentCount={commentCounts[post.id] || 0}
-                onOpenComments={openComments}
-                onClose={closeComments}
-              />
-            ))}
+            {[...posts]
+              .sort(() => Math.random() - 0.5)
+              .map((post) => (
+                <Post
+                  key={post.id}
+                  post={post}
+                  user={users.find((u) => u.id === post.user_id)}
+                  commentCount={commentCounts[post.id] || 0}
+                  onOpenComments={openComments}
+                  onClose={closeComments}
+                />
+              ))}
+
             <div className="load-more">
               {!loading && (
                 <button onClick={() => setPage((prev) => prev + 1)}>
