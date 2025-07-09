@@ -10,6 +10,7 @@ import { useState } from "react";
 import { supabase } from "../supabaseClient";
 import { toast } from "react-toastify";
 import { BiBorderBottom } from "react-icons/bi";
+import { BiLike } from "react-icons/bi";
 
 export default function Post({
   post,
@@ -124,10 +125,8 @@ export default function Post({
           <footer>
             <div className="likes">
               <div className="like-icon">
-                <img
-                  src="https://scontent-waw2-1.xx.fbcdn.net/m1/v/t6/An8xkEVooUCo5SJedJYOC_iN5OmR2RJo8c1g_Cn96AzPhQ25HQCvCZzyKnk8f2-P-HPtb5ZU1xBQXIOFR6XnrQOf5BUfZ0lFsPt0FaUBAp99uRULbyFl9GuStTxoWbM.png?_nc_gid=H_EN0yB6aWOHbw_r16E4tQ&_nc_oc=AdkP9-KMm3TKiHDKLuZoA_t46-6w4PEL_axR-KiBrA-hRRQ89PAl9gwTKLKPrFLXRew&ccb=10-5&oh=00_AfIrV4lWgOIn9YjM9cyeTnNhaxp9gOeVeCAVlT2LMXCOHQ&oe=68653388&_nc_sid=7da55a"
-                  alt=""
-                />{" "}
+                <BiLike color="#5AA7FF" />
+
                 <div style={{ marginLeft: "3px" }}>{likes}</div>
               </div>
               <div

@@ -4,12 +4,13 @@ import { supabase } from "../supabaseClient";
 import Post from "../components/Post";
 import { formatDistanceToNow } from "date-fns";
 import { toast } from "react-toastify";
-import userIcon from "../assets/user_logo.svg";
+
 import { IoSendSharp } from "react-icons/io5";
 
 export default function CommentModal({ postId, post, onClose, user }) {
   const [comments, setComments] = useState([]);
   const [likedMap, setLikedMap] = useState({});
+  const [text, setText] = useState("");
 
   useEffect(() => {
     async function fetchComments() {
@@ -57,6 +58,18 @@ export default function CommentModal({ postId, post, onClose, user }) {
     };
   }, []);
 
+  async function addComment() {
+    const { error } = await supabase
+      .from("commentsv2")
+      .insert({ post_id: postId, body: text, user_id: 12, likes: 0 });
+    toast.success("Comment added corectly!");
+    setText("");
+
+    if (error) {
+      console.error("likes error: ", error.message);
+    }
+  }
+
   return (
     <div className="overlay" onClick={onClose}>
       <div className="comment-modal" onClick={(e) => e.stopPropagation()}>
@@ -65,12 +78,20 @@ export default function CommentModal({ postId, post, onClose, user }) {
         <div className="comments">
           <div className="comment">
             <div>
-              <img src={userIcon} alt="" />
+              <img
+                src="https://randomuser.me/api/portraits/women/16.jpg"
+                alt=""
+              />
             </div>
             <div className="content">
               <div className="add-comment-form">
-                <input className="body" placeholder="Comment as XX" />
-                <div style={{ cursor: "pointer" }}>
+                <input
+                  className="body"
+                  placeholder="Comment as Daniel Miller"
+                  onChange={(e) => setText(e.target.value)}
+                  value={text}
+                />
+                <div style={{ cursor: "pointer" }} onClick={() => addComment()}>
                   <IoSendSharp />
                 </div>
               </div>
