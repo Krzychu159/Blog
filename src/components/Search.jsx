@@ -6,6 +6,7 @@ import { FaSearch } from "react-icons/fa";
 export default function Search() {
   const [users, setUsers] = useState([]);
   const [open, setOpen] = useState(false);
+  const [phrase, setPhrase] = useState("");
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -35,17 +36,40 @@ export default function Search() {
 
   return (
     <div className="search-element" ref={wrapperRef}>
+      {/* Desktop */}
       <div className="search desktop-only" onClick={() => setOpen(true)}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <FaSearch />
         </div>
-        <input type="text" placeholder="Search Facebook" />
+        <input
+          type="text"
+          placeholder="Search Facebook"
+          onChange={(e) => setPhrase(e.target.value)}
+          value={phrase}
+        />
       </div>
 
-      <div className="search circle mobile-only" onClick={() => setOpen(true)}>
+      {/* Mobile */}
+      <div
+        className={`search circle mobile-only ${open ? "active" : ""}`}
+        onClick={() => setOpen(!open)}
+      >
         <FaSearch />
       </div>
 
+      {/* Mobile input */}
+      {open && (
+        <div className=" search mobile-input mobile-only">
+          <input
+            type="text"
+            placeholder="Search Facebook"
+            onChange={(e) => setPhrase(e.target.value)}
+            value={phrase}
+          />
+        </div>
+      )}
+
+      {/* Final */}
       {open && (
         <div className="search-result">
           {users.map((user) => (

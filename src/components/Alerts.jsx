@@ -27,7 +27,11 @@ export default function Alert() {
 
       {open && (
         <div className="alert-open">
-          <li>Cs</li>
+          <li>Emily Johnson commented on your post</li>
+          <li>Jack Smith liked your post</li>
+          <li>Michael Brown started following you</li>
+          <li>Sarah Davis replied to your comment</li>
+          <li>You have a new message from James </li>
         </div>
       )}
     </div>
