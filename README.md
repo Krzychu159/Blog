@@ -1,12 +1,48 @@
-# React + Vite
+# 📰 Supabase Social Feed App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight social media-style feed application built with **React** and **Supabase** — featuring posts, comments, likes, and user profiles. Inspired by familiar social network UI/UX patterns.
 
-Currently, two official plugins are available:
+🔗 **Live Preview**  
+👉 [https://blog-five-mu-18.vercel.app/](https://blog-five-mu-18.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ⚙️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React 18** with Vite
+- **Supabase** (PostgreSQL, Auth, Storage)
+- **React Icons**
+- **SCSS** styling
+- **React Toastify** for notifications
+- **Date-fns** for time formatting
+
+---
+
+## ✨ Features
+
+- ✅ Create posts with text and optional image
+- ✅ Like/unlike posts
+- ✅ Like comments
+- ✅ Add comments in modal view
+- ✅ Display comment count per post
+- ✅ Copy post link to clipboard
+- ✅ Responsive UI styled in Facebook-like fashion
+- ✅ Basic post pagination (`Load more`)
+- ✅ Display avatars and user info
+- ✅ **User search dropdown** in post form
+- ✅ **Live demo** hosted on Vercel
+
+---
+
+## 🧰 Getting Started
+
+```bash
+git clone https://github.com/yourusername/yourproject.git
+cd yourproject
+npm install
+npm run dev
+
+🧪 **Example Account**
+Email: `dqh24342@jioso.com`
+Password: `password`
+```

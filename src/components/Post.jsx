@@ -120,7 +120,7 @@ export default function Post({
           </header>
           <main onClick={() => onOpenComments(post.id)}>
             <div className="post-body">{post.body}</div>
-            <img src={post.img_url} alt="image post" />
+            {post.img_url && <img src={post.img_url} alt="image post" />}
           </main>
           <footer>
             <div className="likes">

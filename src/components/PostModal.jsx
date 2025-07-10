@@ -30,7 +30,7 @@ export default function PostModal({ onClose }) {
   };
 
   async function addPost() {
-    if (userId === "" || text === "" || postUrl === "") {
+    if (userId === "" || text === "") {
       console.log("empty fields");
       toast.error("Empty fields!");
     } else {
