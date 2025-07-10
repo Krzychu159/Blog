@@ -34,6 +34,13 @@ export default function Search() {
     };
   }, []);
 
+  const filteredUsers =
+    phrase.length > 0
+      ? users.filter((user) =>
+          user.full_name.toLowerCase().includes(phrase.toLowerCase())
+        )
+      : users;
+
   return (
     <div className="search-element" ref={wrapperRef}>
       {/* Desktop */}
@@ -72,8 +79,11 @@ export default function Search() {
       {/* Final */}
       {open && (
         <div className="search-result">
-          {users.map((user) => (
-            <li key={user.id}>{user.full_name}</li>
+          {filteredUsers.map((user) => (
+            <li key={user.id}>
+              <img src={user.image} alt="" />
+              <div>{user.full_name}</div>
+            </li>
           ))}
         </div>
       )}
