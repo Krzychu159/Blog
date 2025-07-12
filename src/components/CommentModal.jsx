@@ -59,6 +59,11 @@ export default function CommentModal({ postId, post, onClose, user }) {
   }, []);
 
   async function addComment() {
+    if (text.trim().length < 5) {
+      toast.error("Comment too short!");
+      return;
+    }
+
     const { error } = await supabase
       .from("commentsv2")
       .insert({ post_id: postId, body: text, user_id: 12, likes: 0 });
@@ -78,6 +83,7 @@ export default function CommentModal({ postId, post, onClose, user }) {
         <div className="comments">
           <div className="comment">
             <div>
+              {!comments && <div> Not comment yet</div>}
               <img
                 src="https://randomuser.me/api/portraits/women/16.jpg"
                 alt=""

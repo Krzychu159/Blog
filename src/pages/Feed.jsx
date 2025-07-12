@@ -15,7 +15,6 @@ export default function Feed() {
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [commentCounts, setCommentCounts] = useState({});
   const [formShow, setFormShow] = useState(false);
-
   const [page, setPage] = useState(1);
   const POST_PER_PAGE = 10;
 
@@ -24,11 +23,13 @@ export default function Feed() {
     const to = from + POST_PER_PAGE - 1;
 
     async function fetchPosts() {
+      setLoading(true);
       const { data, error } = await supabase
         .from("postsv2")
         .select("*")
         .order("created_at", { ascending: false })
         .range(from, to);
+
       if (error) console.log("Posts error:", error.message);
       else {
         setPosts((prev) => (page === 1 ? data : [...prev, ...data]));
@@ -70,6 +71,19 @@ export default function Feed() {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    function handleScroll() {
+      const bottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 200;
+      if (bottom && !loading) {
+        setPage((prev) => prev + 1);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading]);
+
   const openComments = (postId) => {
     setSelectedPostId(postId);
   };
@@ -88,7 +102,6 @@ export default function Feed() {
           <PostForm onOpenForm={() => setFormShow(true)} />
           <Story />
           <div className="post-list">
-            {loading ? "loading" : null}
             {[...posts]
               .sort(() => Math.random() - 0.5)
               .map((post) => (
@@ -102,13 +115,7 @@ export default function Feed() {
                 />
               ))}
 
-            <div className="load-more">
-              {!loading && (
-                <button onClick={() => setPage((prev) => prev + 1)}>
-                  Load more posts
-                </button>
-              )}
-            </div>
+            {loading && <div className="loader">Loading...</div>}
 
             {selectedPostId && (
               <CommentModal

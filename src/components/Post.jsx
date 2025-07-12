@@ -11,6 +11,7 @@ import { supabase } from "../supabaseClient";
 import { toast } from "react-toastify";
 import { BiBorderBottom } from "react-icons/bi";
 import { BiLike } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 export default function Post({
   post,
@@ -23,6 +24,7 @@ export default function Post({
   const [liked, setLiked] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const [dots, setDots] = useState(false);
+  const navigate = useNavigate();
 
   async function updateLikes() {
     if (liked) {
@@ -82,7 +84,10 @@ export default function Post({
               <img src={user?.image || userIcon} alt="User profile" />
 
               <div className="user-data">
-                <div className="username">
+                <div
+                  className="username"
+                  onClick={() => navigate(`/user/${user.id}`)}
+                >
                   {user ? user.full_name : "Unkown user..."}
                 </div>
 
@@ -147,7 +152,7 @@ export default function Post({
                 <AiFillLike size={20} color={liked ? "#0866FF" : "#b0b3b8"} />
                 Like
               </button>
-              <button onClick={() => onOpenComments(post.id)}>
+              <button onClick={() => onOpenComments(post.id, commentCount)}>
                 <FaComment size={20} color="#b0b3b8" />
                 Comment
               </button>
