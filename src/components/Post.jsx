@@ -81,7 +81,11 @@ export default function Post({
         <div className="post-item">
           <header>
             <div className="left">
-              <img src={user?.image || userIcon} alt="User profile" />
+              <img
+                src={user?.image || userIcon}
+                alt="User profile"
+                onClick={() => navigate(`/user/${user.id}`)}
+              />
 
               <div className="user-data">
                 <div

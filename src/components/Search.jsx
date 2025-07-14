@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import "./Menu.scss";
 import { supabase } from "../supabaseClient";
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function Search() {
   const [users, setUsers] = useState([]);
   const [open, setOpen] = useState(false);
   const [phrase, setPhrase] = useState("");
   const wrapperRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchUsers() {
@@ -80,7 +82,7 @@ export default function Search() {
       {open && (
         <div className="search-result">
           {filteredUsers.map((user) => (
-            <li key={user.id}>
+            <li key={user.id} onClick={() => navigate(`/user/${user.id}`)}>
               <img src={user.image} alt="" />
               <div>{user.full_name}</div>
             </li>

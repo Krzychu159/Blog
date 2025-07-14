@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "../supabaseClient";
+import "./User.scss";
+import Menu from "../components/Menu";
 
 export default function User() {
   const { id } = useParams();
@@ -34,13 +36,58 @@ export default function User() {
   }, [id]);
 
   return (
-    <div>
-      <div>{user?.full_name}</div>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>{post.body}</li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <Menu />
+      <div className="user-page">
+        <div className="back-photo">
+          <img src={user?.bgc_photo} alt="back" />
+        </div>
+        <div className="main-line">
+          <div className="left">
+            <div className="photo">
+              <img src={user?.image} alt="user" />
+            </div>
+            <div className="name">
+              <p>{user?.full_name}</p>
+              <p>{user?.email}</p>
+            </div>
+          </div>
+          <div className="right">
+            <button className="message"> Message</button>
+            <button className="more">More</button>
+          </div>
+        </div>
+        <div className="tabs">
+          <li>Posts</li>
+          <li>About</li>
+          <li>Friends</li>
+          <li>Photos</li>
+        </div>
+        <main className="content">
+          <div className="intro">
+            <h2>Intro</h2>
+            <span>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+            </span>
+          </div>
+          <div className="posts">
+            <ul>
+              {posts.map((post) => (
+                <li key={post.id}>{post.body}</li>
+              ))}
+            </ul>
+          </div>
+        </main>
+      </div>
+    </>
   );
 }
