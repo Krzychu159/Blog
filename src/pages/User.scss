@@ -17,23 +17,60 @@
   .main-line {
     display: flex;
     justify-content: space-between;
+    margin-top: -2rem;
+    background-color: #252728;
+    border-bottom: 1px solid gray;
+    padding: 1rem 2rem;
     .left {
       display: flex;
+      .photo img {
+        border-radius: 50%;
+        width: 10em;
+        height: 10rem;
+
+        border: 0.3rem solid #1c1c1d;
+      }
+      .name {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 2rem;
+      }
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      button {
+        height: 2rem;
+        width: 6rem;
+        border-radius: 0.5rem;
+        border: none;
+        color: white;
+        background-color: #404046;
+      }
     }
   }
   .tabs {
+    background-color: #252728;
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 1rem 2rem;
     li {
       list-style: none;
     }
   }
   .content {
     display: flex;
+    gap: 3rem;
     .intro {
       flex: 1;
+      background-color: #252728;
     }
     .posts {
+      max-width: 550px;
       flex: 2;
     }
   }
